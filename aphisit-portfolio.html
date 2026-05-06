@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aphisit — AI Digital Marketing Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0e0e0c;
+  --paper: #f5f3ef;
+  --warm: #faf8f4;
+  --gold: #b8933a;
+  --gold-light: #e8c87a;
+  --muted: #6b6960;
+  --border: rgba(14,14,12,0.1);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(245,243,239,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 1rem; font-weight: 600;
+  color: var(--ink); text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 400; font-family: var(--sans);
+  color: var(--muted); text-decoration: none;
+  letter-spacing: 0.04em;
+  position: relative; padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 100%;
+  height: 1px; background: var(--gold);
+  transition: right 0.25s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.nav-links a:hover::after, .nav-links a.active::after { right: 0; }
+
+/* ── PAGES ── */
+.page { display: none; min-height: 100vh; padding-top: 72px; }
+.page.active { display: block; }
+
+/* ── HOME ── */
+#home {
+  display: none;
+  background: var(--paper);
+}
+#home.active { display: flex; flex-direction: column; }
+
+.home-hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 72px);
+}
+.home-left {
+  padding: 5rem 3rem 5rem 3rem;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 0.5px solid var(--border);
+}
+.home-eyebrow {
+  font-size: 11px; font-weight: 500; font-family: var(--sans);
+  letter-spacing: 0.14em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.home-eyebrow::before {
+  content: '';
+  display: block; width: 32px; height: 1px; background: var(--gold);
+}
+.home-headline {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.1; font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.home-headline em {
+  font-style: italic; color: var(--gold);
+}
+.home-body {
+  font-size: 15px; color: var(--muted);
+  max-width: 420px; margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.home-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+.tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+  padding: 5px 12px; border: 0.5px solid var(--border);
+  border-radius: 100px; color: var(--muted);
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); }
+.home-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--ink); text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--ink);
+  transition: color 0.2s, border-color 0.2s;
+  width: fit-content; cursor: pointer;
+}
+.home-cta:hover { color: var(--gold); border-color: var(--gold); }
+.home-cta-arrow { transition: transform 0.2s; }
+.home-cta:hover .home-cta-arrow { transform: translateX(4px); }
+
+.home-right {
+  position: relative; overflow: hidden;
+  background: var(--ink);
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 3rem;
+}
+.home-right-letter {
+  position: absolute; top: -0.15em; right: -0.05em;
+  font-family: var(--serif); font-size: 22rem;
+  font-weight: 600; color: rgba(255,255,255,0.04);
+  line-height: 1; pointer-events: none; user-select: none;
+  letter-spacing: -0.05em;
+}
+.home-stats { position: relative; z-index: 1; }
+.home-stat {
+  padding: 1.25rem 0;
+  border-top: 0.5px solid rgba(255,255,255,0.1);
+  display: flex; align-items: baseline; gap: 1rem;
+}
+.home-stat:last-child { border-bottom: 0.5px solid rgba(255,255,255,0.1); }
+.home-stat-num {
+  font-family: var(--serif); font-size: 2.5rem;
+  font-weight: 600; color: var(--gold-light);
+  line-height: 1; min-width: 80px;
+}
+.home-stat-label { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+
+.home-banner {
+  background: var(--ink); color: rgba(255,255,255,0.5);
+  padding: 1rem 3rem;
+  font-size: 12px; letter-spacing: 0.08em;
+  display: flex; gap: 3rem; overflow: hidden;
+}
+.home-banner span { white-space: nowrap; }
+.home-banner strong { color: var(--gold-light); font-weight: 500; }
+
+/* ── ABOUT ── */
+#about { background: var(--warm); }
+
+.about-layout {
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  min-height: calc(100vh - 72px);
+}
+.about-sidebar {
+  background: var(--ink); padding: 4rem 3rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.about-initial {
+  font-family: var(--serif); font-size: 9rem;
+  font-weight: 600; color: rgba(255,255,255,0.08);
+  line-height: 1; margin-bottom: auto;
+  display: block;
+}
+.about-sidebar-title {
+  font-family: var(--serif); font-size: 1.4rem;
+  color: #fff; margin-bottom: 0.5rem; font-style: italic;
+}
+.about-sidebar-sub { font-size: 13px; color: rgba(255,255,255,0.45); }
+.about-skills { margin-top: 3rem; }
+.about-skill-item {
+  padding: 0.75rem 0; border-top: 0.5px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.about-skill-item:last-child { border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+.about-skill-name { font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
+.about-skill-bar {
+  height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px;
+  width: 80px; margin-top: 0; position: relative; overflow: hidden;
+}
+.about-skill-fill { height: 100%; background: var(--gold); border-radius: 2px; }
+
+.about-content { padding: 5rem 4rem; }
+.about-section-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.about-section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); display: block; }
+.about-heading {
+  font-family: var(--serif); font-size: 2.4rem;
+  font-weight: 600; line-height: 1.2; margin-bottom: 1.5rem;
+}
+.about-text { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; }
+.about-focus {
+  background: #fff; border: 0.5px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+}
+.about-focus-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); font-weight: 500; margin-bottom: 0.5rem; }
+.about-focus-text { font-size: 14px; color: var(--ink); line-height: 1.7; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2rem; }
+.about-card {
+  background: #fff; border: 0.5px solid var(--border);
+  border-radius: 10px; padding: 1.25rem;
+}
+.about-card-icon { font-size: 20px; margin-bottom: 8px; }
+.about-card-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.about-card-desc { font-size: 12px; color: var(--muted); }
+
+/* ── PROJECTS ── */
+#projects { background: var(--paper); }
+
+.projects-header {
+  padding: 5rem 3rem 3rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.projects-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.projects-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); display: block; }
+.projects-title {
+  font-family: var(--serif); font-size: 3rem;
+  font-weight: 600; margin-bottom: 0.75rem;
+}
+.projects-sub { font-size: 15px; color: var(--muted); max-width: 540px; }
+
+.projects-list { padding: 0 3rem 5rem; }
+.project-item {
+  display: grid; grid-template-columns: 80px 1fr auto;
+  gap: 2.5rem; align-items: start;
+  padding: 3rem 0;
+  border-bottom: 0.5px solid var(--border);
+  transition: background 0.2s;
+}
+.project-item:hover { background: rgba(184,147,58,0.03); }
+.project-num {
+  font-family: var(--serif); font-size: 4rem; font-weight: 600;
+  color: rgba(14,14,12,0.07); line-height: 1; user-select: none;
+}
+.project-type {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; margin-bottom: 0.75rem;
+}
+.project-title {
+  font-family: var(--serif); font-size: 1.6rem;
+  font-weight: 600; margin-bottom: 0.75rem; line-height: 1.3;
+}
+.project-goal { font-size: 14px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.7; max-width: 520px; }
+.project-deliverables { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-tag {
+  font-size: 11px; padding: 4px 10px;
+  border: 0.5px solid var(--border); border-radius: 100px;
+  color: var(--muted); font-weight: 400;
+}
+.project-kpi {
+  text-align: right; min-width: 140px;
+}
+.project-kpi-label { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px; }
+.project-kpi-items { display: flex; flex-direction: column; gap: 4px; }
+.project-kpi-item {
+  font-size: 11px; color: var(--ink);
+  background: rgba(184,147,58,0.08);
+  border: 0.5px solid rgba(184,147,58,0.2);
+  padding: 3px 8px; border-radius: 4px;
+  text-align: center;
+}
+.project-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--muted); margin-top: 1rem;
+}
+.project-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ── BLOG ── */
+#blog { background: var(--warm); }
+
+.blog-header {
+  padding: 5rem 3rem 3rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.blog-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.blog-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); display: block; }
+.blog-title {
+  font-family: var(--serif); font-size: 3rem; font-weight: 600; margin-bottom: 0.75rem;
+}
+.blog-sub { font-size: 15px; color: var(--muted); max-width: 500px; }
+
+.blog-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 0.5px solid var(--border);
+}
+.blog-featured {
+  grid-column: 1 / -1;
+  padding: 3rem; border-bottom: 0.5px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+}
+.blog-featured-label {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+}
+.blog-featured-title {
+  font-family: var(--serif); font-size: 2rem;
+  font-weight: 600; line-height: 1.3; margin-bottom: 1rem;
+}
+.blog-featured-excerpt { font-size: 14px; color: var(--muted); line-height: 1.75; }
+.blog-featured-img {
+  background: var(--ink); border-radius: 10px;
+  height: 220px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 5rem; color: rgba(255,255,255,0.07);
+  font-weight: 600; font-style: italic;
+}
+.blog-card {
+  padding: 2.5rem; border-right: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+}
+.blog-card:nth-child(even) { border-right: none; }
+.blog-card-cat {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; margin-bottom: 0.75rem;
+}
+.blog-card-title {
+  font-family: var(--serif); font-size: 1.2rem;
+  font-weight: 600; margin-bottom: 0.75rem; line-height: 1.35;
+}
+.blog-card-excerpt { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+.blog-card-meta { font-size: 11px; color: var(--muted); }
+.blog-coming { 
+  color: var(--muted); font-size: 12px; letter-spacing: 0.08em;
+  display: flex; align-items: center; gap: 6px; margin-top: 1rem;
+}
+.blog-coming::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--ink); color: #fff;
+}
+#contact.active { display: flex; flex-direction: column; min-height: 100vh; }
+
+.contact-layout {
+  flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+}
+.contact-left { padding: 5rem 3rem 5rem 3rem; border-right: 0.5px solid rgba(255,255,255,0.08); }
+.contact-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+.contact-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); display: block; }
+.contact-heading {
+  font-family: var(--serif); font-size: 3rem;
+  font-weight: 600; line-height: 1.2; margin-bottom: 1.25rem; color: #fff;
+}
+.contact-heading em { font-style: italic; color: var(--gold-light); }
+.contact-text { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; max-width: 380px; margin-bottom: 3rem; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px; color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-link:hover { color: var(--gold-light); }
+.contact-link-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+.contact-link:hover .contact-link-icon { border-color: var(--gold); }
+
+.contact-right { padding: 5rem 3rem; }
+.contact-availability {
+  margin-bottom: 3rem;
+}
+.contact-avail-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: #5DCAA5; font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.contact-avail-status::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: #5DCAA5;
+  box-shadow: 0 0 0 3px rgba(93,202,165,0.2);
+}
+.contact-avail-text { font-size: 13px; color: rgba(255,255,255,0.35); }
+.contact-roles { margin-top: 3rem; }
+.contact-roles-label { font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 1rem; }
+.contact-role-item {
+  padding: 1rem 0; border-top: 0.5px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.contact-role-item:last-child { border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.contact-role-name { font-size: 14px; color: rgba(255,255,255,0.7); }
+.contact-role-type { font-size: 11px; color: var(--gold); }
+
+.contact-letter {
+  font-family: var(--serif); font-size: 14rem;
+  font-weight: 600; color: rgba(255,255,255,0.03);
+  position: absolute; bottom: 0; right: 0;
+  line-height: 0.8; pointer-events: none; user-select: none;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--ink); color: rgba(255,255,255,0.25);
+  padding: 1.5rem 3rem;
+  font-size: 12px; letter-spacing: 0.04em;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 0.5px solid rgba(255,255,255,0.06);
+}
+.footer strong { color: rgba(255,255,255,0.4); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page.active .animate {
+  animation: fadeUp 0.55s ease both;
+}
+.page.active .animate-1 { animation-delay: 0.05s; }
+.page.active .animate-2 { animation-delay: 0.15s; }
+.page.active .animate-3 { animation-delay: 0.25s; }
+.page.active .animate-4 { animation-delay: 0.35s; }
+.page.active .animate-5 { animation-delay: 0.45s; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .home-hero { grid-template-columns: 1fr; }
+  .home-right { display: none; }
+  .home-left { padding: 3rem 1.5rem; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-sidebar { display: none; }
+  .about-content { padding: 3rem 1.5rem; }
+  .projects-header, .blog-header, .contact-left { padding: 3rem 1.5rem; }
+  .projects-list { padding: 0 1.5rem 3rem; }
+  .project-item { grid-template-columns: 1fr; gap: 1rem; }
+  .project-num { font-size: 2.5rem; }
+  .project-kpi { text-align: left; }
+  .blog-featured { grid-template-columns: 1fr; }
+  .blog-featured-img { display: none; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-card { border-right: none; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-right { padding: 2rem 1.5rem; }
+  .footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#" onclick="showPage('home'); return false;">Aphisit.</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home'); return false;" class="active" data-page="home">Home</a></li>
+    <li><a href="#" onclick="showPage('about'); return false;" data-page="about">About</a></li>
+    <li><a href="#" onclick="showPage('projects'); return false;" data-page="projects">Projects</a></li>
+    <li><a href="#" onclick="showPage('blog'); return false;" data-page="blog">Blog / Insights</a></li>
+    <li><a href="#" onclick="showPage('contact'); return false;" data-page="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE 1: HOME ── -->
+<div id="home" class="page active">
+  <div class="home-hero">
+    <div class="home-left">
+      <div class="home-eyebrow animate animate-1">AI Digital Marketing Portfolio</div>
+      <h1 class="home-headline animate animate-2">
+        Building marketing<br>that <em>performs</em><br>and scales.
+      </h1>
+      <p class="home-body animate animate-3">
+        AI-driven Digital Marketer focused on SEO, Content Strategy, Paid Ads, Analytics, and AI-assisted marketing workflows. This portfolio documents my 60-day career reset project — practical marketing projects with measurable outputs.
+      </p>
+      <div class="home-tags animate animate-4">
+        <span class="tag">SEO</span>
+        <span class="tag">Content Strategy</span>
+        <span class="tag">Paid Ads</span>
+        <span class="tag">Analytics</span>
+        <span class="tag">AI Workflow</span>
+      </div>
+      <span class="home-cta animate animate-5" onclick="showPage('projects')">
+        View projects <span class="home-cta-arrow">→</span>
+      </span>
+    </div>
+    <div class="home-right">
+      <div class="home-right-letter">A</div>
+      <div class="home-stats animate animate-2">
+        <div class="home-stat">
+          <div class="home-stat-num">60</div>
+          <div class="home-stat-label">Day career reset<br>project</div>
+        </div>
+        <div class="home-stat">
+          <div class="home-stat-num">3</div>
+          <div class="home-stat-label">Live portfolio<br>projects</div>
+        </div>
+        <div class="home-stat">
+          <div class="home-stat-num">5+</div>
+          <div class="home-stat-label">Marketing disciplines<br>covered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="home-banner">
+    <span><strong>SEO</strong> — Keyword Research · On-page Optimization · Search Console</span>
+    <span><strong>ADS</strong> — Google Ads · Meta Blueprint · Campaign Planning</span>
+    <span><strong>CONTENT</strong> — 30-Day Calendar · Copywriting · Canva Creatives</span>
+    <span><strong>ANALYTICS</strong> — GA4 · KPI Dashboards · Reporting</span>
+  </div>
+</div>
+
+<!-- ── PAGE 2: ABOUT ── -->
+<div id="about" class="page">
+  <div class="about-layout">
+    <div class="about-sidebar">
+      <span class="about-initial">A</span>
+      <div>
+        <div class="about-sidebar-title">Aphisit</div>
+        <div class="about-sidebar-sub">AI Digital Marketer · Bangkok</div>
+        <div class="about-skills">
+          <div class="about-skill-item">
+            <span class="about-skill-name">SEO & Content</span>
+            <div class="about-skill-bar"><div class="about-skill-fill" style="width:75%"></div></div>
+          </div>
+          <div class="about-skill-item">
+            <span class="about-skill-name">Paid Ads</span>
+            <div class="about-skill-bar"><div class="about-skill-fill" style="width:65%"></div></div>
+          </div>
+          <div class="about-skill-item">
+            <span class="about-skill-name">Analytics / GA4</span>
+            <div class="about-skill-bar"><div class="about-skill-fill" style="width:70%"></div></div>
+          </div>
+          <div class="about-skill-item">
+            <span class="about-skill-name">AI Workflow</span>
+            <div class="about-skill-bar"><div class="about-skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="about-skill-item">
+            <span class="about-skill-name">Copywriting</span>
+            <div class="about-skill-bar"><div class="about-skill-fill" style="width:72%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="about-section-label animate animate-1">About me</div>
+      <h2 class="about-heading animate animate-2">Marketing graduate<br>building measurable work.</h2>
+      <p class="about-text animate animate-3">
+        I am a marketing graduate with hands-on experience in content creation, digital marketing, event coordination, and small business operations. I bring a practical, results-oriented mindset to every project — focused on what can be built, shipped, and measured.
+      </p>
+      <div class="about-focus animate animate-4">
+        <div class="about-focus-label">Current focus</div>
+        <div class="about-focus-text">Building practical, measurable projects in SEO, content strategy, paid ads, analytics, and AI-assisted marketing workflows to prepare for remote-ready digital marketing roles.</div>
+      </div>
+      <div class="about-grid animate animate-5">
+        <div class="about-card">
+          <div class="about-card-icon">🎯</div>
+          <div class="about-card-title">Data-driven approach</div>
+          <div class="about-card-desc">Every project tracked with real KPIs — impressions, CTR, clicks, cost per result</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🤖</div>
+          <div class="about-card-title">AI-assisted workflow</div>
+          <div class="about-card-desc">Using AI as a co-pilot for research, ideation, copywriting, and performance analysis</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🌏</div>
+          <div class="about-card-title">Remote-ready</div>
+          <div class="about-card-desc">Daily logs, async documentation, and weekly updates — built for WFH from day one</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">📈</div>
+          <div class="about-card-title">Portfolio over certificates</div>
+          <div class="about-card-desc">Real deliverables: live website, keyword sheets, campaign briefs, content calendars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PAGE 3: PROJECTS ── -->
+<div id="projects" class="page">
+  <div class="projects-header">
+    <div class="projects-label animate animate-1">Portfolio projects</div>
+    <h2 class="projects-title animate animate-2">Three projects.<br>Real outputs. Measured.</h2>
+    <p class="projects-sub animate animate-3">Each project is built with keyword research, published content, campaign planning, and KPI tracking — documented from day one.</p>
+  </div>
+  <div class="projects-list">
+
+    <div class="project-item animate animate-2">
+      <div class="project-num">01</div>
+      <div>
+        <div class="project-type">SEO</div>
+        <div class="project-title">SEO Website Project</div>
+        <p class="project-goal">Build an SEO content project with keyword research, published articles, and Search Console tracking. Target: 5–10 articles indexed, with measurable impressions, clicks, CTR, and average position growth over 60 days.</p>
+        <div class="project-deliverables">
+          <span class="project-tag">Keyword Research</span>
+          <span class="project-tag">5–10 Articles</span>
+          <span class="project-tag">Search Console</span>
+          <span class="project-tag">Competitor Analysis</span>
+          <span class="project-tag">On-page SEO</span>
+        </div>
+        <div class="project-status">In progress — Week 1</div>
+      </div>
+      <div class="project-kpi">
+        <div class="project-kpi-label">KPI Targets</div>
+        <div class="project-kpi-items">
+          <span class="project-kpi-item">Impressions 200+</span>
+          <span class="project-kpi-item">Clicks 10+</span>
+          <span class="project-kpi-item">CTR tracked</span>
+          <span class="project-kpi-item">Avg position</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item animate animate-3">
+      <div class="project-num">02</div>
+      <div>
+        <div class="project-type">Paid Ads</div>
+        <div class="project-title">Ads Campaign Project</div>
+        <p class="project-goal">Create a complete campaign plan including buyer persona, marketing funnel, ads copy variations, creative direction, and KPI plan — structured for Google Ads and Meta Ads with real cost and performance benchmarks.</p>
+        <div class="project-deliverables">
+          <span class="project-tag">Buyer Persona</span>
+          <span class="project-tag">3-Stage Funnel</span>
+          <span class="project-tag">Ads Copy × 3</span>
+          <span class="project-tag">Creative Brief</span>
+          <span class="project-tag">KPI Plan</span>
+        </div>
+        <div class="project-status">In progress — Week 1</div>
+      </div>
+      <div class="project-kpi">
+        <div class="project-kpi-label">KPI Targets</div>
+        <div class="project-kpi-items">
+          <span class="project-kpi-item">CTR 1–3%</span>
+          <span class="project-kpi-item">CPC tracked</span>
+          <span class="project-kpi-item">Cost/Result</span>
+          <span class="project-kpi-item">Leads 5+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item animate animate-4">
+      <div class="project-num">03</div>
+      <div>
+        <div class="project-type">Content Strategy</div>
+        <div class="project-title">30-Day Content Strategy Project</div>
+        <p class="project-goal">Create a 30-day content calendar with captions, content pillars (Educational, Problem-Solution, Proof, Promotional, Brand Story), and Canva creative mockups — structured for Instagram and Facebook with clear CTAs and engagement goals.</p>
+        <div class="project-deliverables">
+          <span class="project-tag">30-Day Calendar</span>
+          <span class="project-tag">30 Captions</span>
+          <span class="project-tag">5 Content Pillars</span>
+          <span class="project-tag">Canva Mockups</span>
+          <span class="project-tag">Weekly Insights</span>
+        </div>
+        <div class="project-status">In progress — Week 1</div>
+      </div>
+      <div class="project-kpi">
+        <div class="project-kpi-label">KPI Targets</div>
+        <div class="project-kpi-items">
+          <span class="project-kpi-item">30 posts</span>
+          <span class="project-kpi-item">Consistency</span>
+          <span class="project-kpi-item">Engagement</span>
+          <span class="project-kpi-item">Output rate</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── PAGE 4: BLOG ── -->
+<div id="blog" class="page">
+  <div class="blog-header">
+    <div class="blog-label animate animate-1">Blog / Insights</div>
+    <h2 class="blog-title animate animate-2">Notes from the field.</h2>
+    <p class="blog-sub animate animate-3">Weekly insights, lessons learned, and marketing observations from my 60-day project journey.</p>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-featured animate animate-2">
+      <div>
+        <div class="blog-featured-label">Coming soon — Week 1 Insight</div>
+        <h3 class="blog-featured-title">Why publish-first beats perfect-first in digital marketing</h3>
+        <p class="blog-featured-excerpt">The biggest mistake early marketers make is waiting until everything is polished before going live. Search Console needs time to index. GA4 needs data to analyze. The earlier you publish, the earlier your clock starts — and SEO changes can take weeks to months to appear in search results.</p>
+        <div class="blog-coming">Publishing after Day 7</div>
+      </div>
+      <div class="blog-featured-img">insight</div>
+    </div>
+    <div class="blog-card animate animate-3">
+      <div class="blog-card-cat">AI Workflow</div>
+      <h4 class="blog-card-title">Building a personal prompt library for marketing work</h4>
+      <p class="blog-card-excerpt">How I structured 10+ reusable prompts for keyword ideation, ad copy angles, SEO outlines, and weekly KPI summaries — and why consistency beats creativity when using AI as a co-pilot.</p>
+      <div class="blog-card-meta">Coming — Week 1</div>
+      <div class="blog-coming">Publishing soon</div>
+    </div>
+    <div class="blog-card animate animate-4">
+      <div class="blog-card-cat">SEO</div>
+      <h4 class="blog-card-title">Keyword research from scratch: tools, intent, and priority</h4>
+      <p class="blog-card-excerpt">A walkthrough of my keyword research process using Google Search, Trends, and Keyword Planner — including how I categorize by search intent and estimate difficulty without paid tools.</p>
+      <div class="blog-card-meta">Coming — Week 2</div>
+      <div class="blog-coming">Publishing soon</div>
+    </div>
+    <div class="blog-card animate animate-5">
+      <div class="blog-card-cat">Analytics</div>
+      <h4 class="blog-card-title">Setting up GA4 and Search Console on day one</h4>
+      <p class="blog-card-excerpt">Step-by-step notes on connecting Google Analytics 4 and Search Console to a new Google Sites portfolio — why this matters from day one and what the first 30 days of data actually tell you.</p>
+      <div class="blog-card-meta">Coming — Week 2</div>
+      <div class="blog-coming">Publishing soon</div>
+    </div>
+    <div class="blog-card animate animate-5">
+      <div class="blog-card-cat">Paid Ads</div>
+      <h4 class="blog-card-title">Writing ads copy that converts: three angles that work</h4>
+      <p class="blog-card-excerpt">Breaking down the Pain Point, Benefit, and Promotion angles for ad copy — with real examples from my campaign project and why testing three versions matters even in a simulated brief.</p>
+      <div class="blog-card-meta">Coming — Week 3</div>
+      <div class="blog-coming">Publishing soon</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PAGE 5: CONTACT ── -->
+<div id="contact" class="page">
+  <div class="contact-layout">
+    <div class="contact-left">
+      <div class="contact-label animate animate-1">Get in touch</div>
+      <h2 class="contact-heading animate animate-2">Let's work<br><em>together.</em></h2>
+      <p class="contact-text animate animate-3">Open to remote-ready digital marketing roles — WFH, hybrid, or freelance project collaboration. If you're looking for someone who tracks their own KPIs and documents their work, let's talk.</p>
+      <div class="contact-links animate animate-4">
+        <a class="contact-link" href="mailto:aphisit@email.com">
+          <span class="contact-link-icon">✉</span>
+          aphisit@email.com
+        </a>
+        <a class="contact-link" href="#" target="_blank">
+          <span class="contact-link-icon">in</span>
+          LinkedIn Profile
+        </a>
+        <a class="contact-link" href="#" target="_blank">
+          <span class="contact-link-icon">◈</span>
+          Portfolio Website
+        </a>
+      </div>
+    </div>
+    <div class="contact-right" style="position:relative; overflow:hidden;">
+      <div class="contact-letter">A</div>
+      <div style="position:relative; z-index:1;">
+        <div class="contact-availability animate animate-2">
+          <div class="contact-avail-status">Available for opportunities</div>
+          <div class="contact-avail-text">Actively applying — May 2026 onward</div>
+        </div>
+        <div class="contact-roles animate animate-3">
+          <div class="contact-roles-label">Open to</div>
+          <div class="contact-role-item">
+            <span class="contact-role-name">Digital Marketing Executive</span>
+            <span class="contact-role-type">WFH / Remote</span>
+          </div>
+          <div class="contact-role-item">
+            <span class="contact-role-name">Content & SEO Specialist</span>
+            <span class="contact-role-type">WFH / Hybrid</span>
+          </div>
+          <div class="contact-role-item">
+            <span class="contact-role-name">Performance Marketing</span>
+            <span class="contact-role-type">WFH / Remote</span>
+          </div>
+          <div class="contact-role-item">
+            <span class="contact-role-name">Marketing Analyst</span>
+            <span class="contact-role-type">WFH / Hybrid</span>
+          </div>
+          <div class="contact-role-item">
+            <span class="contact-role-name">Freelance Projects</span>
+            <span class="contact-role-type">Remote</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>© 2026 <strong>Aphisit</strong> — AI Digital Marketing Portfolio</span>
+    <span>Built with Google Sites · Tracked with GA4 + Search Console</span>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const page = document.getElementById(id);
+  page.classList.add('active');
+  const link = document.querySelector(`[data-page="${id}"]`);
+  if (link) link.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
