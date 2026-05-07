@@ -8,11 +8,6 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
-  
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
   id-token: write
 
 jobs:
@@ -28,4 +23,3 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          
