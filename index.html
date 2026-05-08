@@ -33,6 +33,7 @@
   "jobTitle": "Digital Marketer",
   "email": "aphisithathaway@gmail.com",
   "url": "https://aphisit.github.io/",
+  "sameAs": ["https://www.linkedin.com/in/aphisit-hathaway-b6a214368"],
   "knowsAbout": ["SEO", "Content Strategy", "Paid Advertising", "Marketing Analytics", "AI-assisted workflows"],
   "address": {
     "@type": "PostalAddress",
@@ -113,7 +114,7 @@ nav.scrolled {
   font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 .nav-brand-dot { font-style: normal; color: var(--tobacco-d); }
-.nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
 .nav-links a {
   font-size: 14px; font-weight: 400; font-family: var(--sans);
   color: var(--mahogany); text-decoration: none;
@@ -737,6 +738,68 @@ nav.scrolled {
   .contact-email { flex-direction: column; gap: 0.4rem; font-size: 1.3rem; overflow-wrap: break-word; word-break: break-word; }
 
   .footer { padding: 1.25rem 1.5rem; flex-direction: column; text-align: center; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .education-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* ── SKILLS ── */
+.skills { background: var(--paper); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3rem;
+}
+.skill-group-label {
+  font-size: 11.5px; letter-spacing: 0.18em;
+  color: var(--tobacco-d); text-transform: uppercase;
+  font-weight: 500; margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.skill-list { list-style: none; display: flex; flex-direction: column; }
+.skill-list li {
+  font-size: 15px; color: var(--text);
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.skill-list li:last-child { border-bottom: none; }
+
+/* ── EDUCATION ── */
+.education { background: var(--cream); }
+.education-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+.edu-label {
+  font-size: 11.5px; letter-spacing: 0.18em;
+  color: var(--tobacco-d); text-transform: uppercase;
+  font-weight: 500; margin-bottom: 1.5rem;
+}
+.edu-degree {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  font-weight: 500;
+  color: var(--mahogany); line-height: 1.15;
+  margin-bottom: 0.35rem;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.edu-field { font-size: 16px; color: var(--text); margin-bottom: 0.35rem; }
+.edu-school { font-size: 14.5px; color: var(--muted); }
+.cert-list { display: flex; flex-direction: column; }
+.cert-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.cert-item:first-child { border-top: 1px solid var(--line-soft); }
+.cert-name { font-size: 15.5px; color: var(--text); }
+.cert-status {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  padding: 3px 10px; border-radius: 100px;
+  text-transform: uppercase;
+  color: var(--tobacco-d);
+  background: rgba(180,157,120,0.14);
+  border: 1px solid rgba(180,157,120,0.3);
 }
 </style>
 
@@ -758,7 +821,9 @@ nav.scrolled {
   <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about" data-section="about">About</a></li>
+    <li><a href="#skills" data-section="skills">Skills</a></li>
     <li><a href="#work" data-section="work">Work</a></li>
+    <li><a href="#education" data-section="education">Education</a></li>
     <li><a href="#insights" data-section="insights">Insights</a></li>
     <li><a href="#contact" data-section="contact">Contact</a></li>
   </ul>
@@ -777,6 +842,7 @@ nav.scrolled {
     <div class="hero-actions reveal">
       <a class="btn btn-primary" href="#work">View the work <span class="btn-arrow">→</span></a>
       <a class="btn btn-ghost" href="#contact">Say hello</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/aphisit-hathaway-b6a214368" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="hero-meta-row reveal">
       <span><strong>Based in</strong> Bangkok</span>
@@ -839,11 +905,69 @@ nav.scrolled {
 
 <div class="flourish"><span class="flourish-mark">✦</span></div>
 
+<!-- ── SKILLS ── -->
+<section id="skills" class="section tight skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">— 02</span>
+      <span class="section-eyebrow">Skills &amp; Tools</span>
+      <span class="section-divider"></span>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-label">SEO</div>
+        <ul class="skill-list">
+          <li>Google Search Console</li>
+          <li>Keyword Research</li>
+          <li>On-page SEO</li>
+          <li>Competitor Analysis</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Paid Ads</div>
+        <ul class="skill-list">
+          <li>Google Ads</li>
+          <li>Meta Ads Manager</li>
+          <li>Campaign Planning</li>
+          <li>Ad Copywriting</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Analytics</div>
+        <ul class="skill-list">
+          <li>Google Analytics 4</li>
+          <li>Conversion Tracking</li>
+          <li>Performance Reporting</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Content</div>
+        <ul class="skill-list">
+          <li>Content Calendar</li>
+          <li>Copywriting</li>
+          <li>Canva</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">AI Workflow</div>
+        <ul class="skill-list">
+          <li>Prompt Engineering</li>
+          <li>AI-assisted Research</li>
+          <li>Claude · ChatGPT</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="flourish"><span class="flourish-mark">✦</span></div>
+
 <!-- ── WORK ── -->
 <section id="work" class="section">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-num">— 02</span>
+      <span class="section-num">— 03</span>
       <span class="section-eyebrow">Selected work</span>
       <span class="section-divider"></span>
     </div>
@@ -963,11 +1087,50 @@ nav.scrolled {
 
 <div class="flourish"><span class="flourish-mark">✦</span></div>
 
+<!-- ── EDUCATION ── -->
+<section id="education" class="section tight education">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">— 04</span>
+      <span class="section-eyebrow">Education &amp; Certifications</span>
+      <span class="section-divider"></span>
+    </div>
+
+    <div class="education-grid">
+      <div class="edu-block reveal">
+        <div class="edu-label">Degree</div>
+        <div class="edu-degree">Bachelor of Business Administration</div>
+        <div class="edu-field">Major in Marketing</div>
+        <div class="edu-school">[Your University] · Class of 2026</div>
+      </div>
+      <div class="cert-block reveal">
+        <div class="edu-label">Certifications &amp; Training</div>
+        <div class="cert-list">
+          <div class="cert-item">
+            <span class="cert-name">Google Analytics 4 Certification</span>
+            <span class="cert-status">In progress</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-name">Meta Blueprint — Media Planning</span>
+            <span class="cert-status">In progress</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-name">HubSpot Content Marketing</span>
+            <span class="cert-status">In progress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="flourish"><span class="flourish-mark">✦</span></div>
+
 <!-- ── INSIGHTS ── -->
 <section id="insights" class="section insights">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-num">— 03</span>
+      <span class="section-num">— 05</span>
       <span class="section-eyebrow">Insights &amp; notes</span>
       <span class="section-divider"></span>
     </div>
@@ -986,38 +1149,7 @@ nav.scrolled {
       <div class="insights-featured-art">A.</div>
     </article>
 
-    <div class="insights-list">
-      <a class="insight-row reveal" href="#">
-        <span class="insight-num">01</span>
-        <span class="insight-cat">AI Workflow</span>
-        <span class="insight-title">Building a personal <em>prompt library</em> for marketing work.</span>
-        <span class="insight-meta">Week 1</span>
-      </a>
-      <a class="insight-row reveal" href="#">
-        <span class="insight-num">02</span>
-        <span class="insight-cat">SEO</span>
-        <span class="insight-title">Keyword research <em>from scratch</em> — tools, intent, and priority.</span>
-        <span class="insight-meta">Week 2</span>
-      </a>
-      <a class="insight-row reveal" href="#">
-        <span class="insight-num">03</span>
-        <span class="insight-cat">Analytics</span>
-        <span class="insight-title">Setting up <em>GA4 and Search Console</em> on day one.</span>
-        <span class="insight-meta">Week 2</span>
-      </a>
-      <a class="insight-row reveal" href="#">
-        <span class="insight-num">04</span>
-        <span class="insight-cat">Paid Ads</span>
-        <span class="insight-title">Writing ad copy that converts — <em>three angles</em> that work.</span>
-        <span class="insight-meta">Week 3</span>
-      </a>
-      <a class="insight-row reveal" href="#">
-        <span class="insight-num">05</span>
-        <span class="insight-cat">Content</span>
-        <span class="insight-title">Why I plan in <em>five content pillars</em> instead of one big calendar.</span>
-        <span class="insight-meta">Week 3</span>
-      </a>
-    </div>
+    <p class="body-text reveal" style="color:var(--muted);font-size:14.5px;margin-top:1.5rem;">More notes coming as the 60-day project progresses — check back weekly.</p>
   </div>
 </section>
 
@@ -1025,7 +1157,7 @@ nav.scrolled {
 <section id="contact" class="section contact">
   <div class="container">
     <div class="section-header reveal" style="justify-content:center;">
-      <span class="section-num">— 04</span>
+      <span class="section-num">— 06</span>
       <span class="section-eyebrow">Contact</span>
     </div>
 
@@ -1040,9 +1172,8 @@ nav.scrolled {
       </a>
 
       <div class="contact-secondary-links reveal">
-        <a class="contact-secondary-link" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="contact-secondary-link" href="#" target="_blank" rel="noopener noreferrer">Portfolio</a>
-        <a class="contact-secondary-link" href="#" target="_blank" rel="noopener noreferrer">Resume</a>
+        <a class="contact-secondary-link" href="https://www.linkedin.com/in/aphisit-hathaway-b6a214368" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="contact-secondary-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
       </div>
 
       <div class="contact-meta-row reveal">
@@ -1092,7 +1223,7 @@ nav.scrolled {
     if (window.scrollY > 30) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
     // Active section indicator
-    var sections = ['about', 'work', 'insights', 'contact'];
+    var sections = ['about', 'skills', 'work', 'education', 'insights', 'contact'];
     var current = '';
     var fromTop = window.scrollY + 120;
     sections.forEach(function (id) {
