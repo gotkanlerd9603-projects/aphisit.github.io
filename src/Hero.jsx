@@ -13,10 +13,10 @@ const Hero = () => {
         <div className="hero__bottom">
           <div className="hero__copy-col">
             <p className="hero__copy">
-              I build practical digital marketing work that combines strategy, search
-              visibility, content planning, and measurement thinking — helping brands
-              communicate clearly, reach the right audience, and improve decisions through
-              structured, data-informed marketing.
+              I build practical digital marketing work across SEO, content strategy, GA4,
+              and AI-assisted workflows — helping brands improve search visibility, plan
+              purposeful content, and make smarter decisions through structured,
+              data-informed campaigns.
             </p>
             <a className="btn btn--pill hero__cta" href="#contact">
               Book Meeting
