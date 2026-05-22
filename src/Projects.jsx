@@ -5,7 +5,7 @@ const Projects = () => {
       idx: '01 / 04',
       title: 'SEO Portfolio Website',
       summary:
-        'A personal portfolio designed to function as a live SEO and analytics case study — focused on website structure, keyword-informed content planning, indexability, and performance tracking through Google Search Console and GA4.',
+        'This portfolio site is built as a live SEO case study. I structured the information architecture for search indexability, connected Google Search Console to track impressions and keyword queries, and configured GA4 to measure traffic sources and user engagement. Performance data is actively accumulating.',
       focus: [
         'Website information architecture',
         'SEO-friendly page structure',
@@ -31,7 +31,7 @@ const Projects = () => {
       idx: '02 / 04',
       title: 'Google Search Console & GA4 Measurement Setup',
       summary:
-        'A measurement-focused project documenting how website performance can be monitored through search visibility, acquisition behavior, landing page engagement, and future improvement opportunities.',
+        'I built a measurement framework using Google Search Console to monitor search impressions, click-through rates, and top queries, and GA4 to track acquisition channels, landing page behaviour, and user engagement. This project documents the setup rationale, reporting structure, and planned analysis cycle.',
       focus: [
         'Search impressions and clicks monitoring',
         'Query and landing page review',
@@ -46,7 +46,7 @@ const Projects = () => {
       idx: '03 / 04',
       title: '30-Day Content Strategy',
       summary:
-        'A structured content planning project that translates brand positioning into weekly themes, post ideas, content pillars, captions, and platform-ready messaging.',
+        'I designed a 30-day content strategy that translates a brand\'s core positioning into weekly themes, content pillars, and platform-ready post concepts. Deliverables include caption direction, audience relevance mapping, and a publishing structure built to maintain brand consistency across social channels.',
       focus: [
         'Content pillars',
         'Monthly publishing structure',
@@ -61,7 +61,7 @@ const Projects = () => {
       idx: '04 / 04',
       title: 'Digital Ads Campaign Concept',
       summary:
-        'A campaign planning project that demonstrates how I translate a business objective into audience targeting, funnel stages, ad message direction, and creative concepts for Meta, Google, or TikTok Ads.',
+        'I developed a paid advertising campaign concept that maps a business objective to audience targeting, funnel stages, and ad creative direction for Meta, Google, or TikTok Ads. The project demonstrates how I structure a campaign brief — from audience thinking and ad copy direction to CTA planning — without requiring live ad spend.',
       focus: [
         'Campaign objective',
         'Target audience definition',
@@ -79,7 +79,7 @@ const Projects = () => {
       <div className="container">
         <div className="eyebrow">Selected Projects</div>
         <div className="section-opener">
-          <h2>Portfolio projects that show how I approach digital marketing problems.</h2>
+          <h2>Portfolio projects showing how I approach SEO, content strategy, analytics, and paid campaign planning.</h2>
           <p className="section-opener__aside">
             These projects are designed to demonstrate process, tools, and decision-making
             across SEO, analytics, content strategy, and campaign planning. Where long-term
