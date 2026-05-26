@@ -184,7 +184,7 @@ main { display: block; }
 
 .hero__display {
   font-family: var(--font-display);
-  font-size: clamp(56px, 12.5vw, 200px);
+  font-size: clamp(48px, 12.5vw, 200px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.92;
@@ -195,9 +195,18 @@ main { display: block; }
   flex-direction: column;
   gap: 0;
   text-transform: uppercase;
-  max-width: 1400px;
+  max-width: 100%;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
 }
-.hero__display-row { display: block; }
+.hero__display-row {
+  display: block;
+  max-width: 100%;
+  width: auto !important; /* override any legacy inline width */
+  white-space: normal;
+}
 
 .hero__bottom {
   display: grid;
@@ -341,11 +350,25 @@ main { display: block; }
 }
 @media (max-width: 720px) {
   .hero { padding: 32px 0 56px; }
-  .hero .container { padding: 0 20px; }
-  .hero__greeting { margin: 24px 0 24px; font-size: 15px; }
-  .hero__display { font-size: clamp(40px, 13vw, 72px); }
-  .hero__bottom { grid-template-columns: 1fr; margin-top: 56px; }
-  .hero__quote, .hero__portrait, .hero__copy-col { max-width: 100%; justify-self: stretch; }
+  .hero .container { padding: 0 20px; max-width: 100%; }
+  .hero__greeting { margin: 24px 0 20px; font-size: 14px; }
+  .hero__display {
+    font-size: clamp(34px, 11vw, 56px);
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+  }
+  .hero__bottom { grid-template-columns: 1fr; margin-top: 48px; gap: 28px; }
+  .hero__quote { grid-column: auto; max-width: 100%; justify-self: stretch; margin-left: 0; }
+  .hero__visual, .hero__copy-col { max-width: 100%; justify-self: stretch; margin-left: 0; }
+  .hero__copy { font-size: 15px; }
+  .hero__cta { width: 100%; max-width: 320px; justify-content: space-between; }
+}
+@media (max-width: 480px) {
+  .hero__display {
+    font-size: clamp(28px, 10.5vw, 44px);
+    letter-spacing: -0.02em;
+  }
+  .hero__greeting { font-size: 13px; }
 }
 
 /* =========================================================================
@@ -1182,4 +1205,229 @@ main { display: block; }
 }
 @media (max-width: 600px) {
   .contact__previews { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   TEMPORARY VISUAL PLACEHOLDERS
+   - All are CSS/SVG-based, no external images, no fake metrics.
+   - Replace with real assets when available.
+   ========================================================================= */
+
+/* --- Hero "Marketing Toolkit" dashboard mockup (replaces portrait slot) --- */
+.hero__visual {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+  background:
+    linear-gradient(160deg, #f9f6ef 0%, #efece4 100%);
+  border: 1px solid var(--cream-border);
+  border-radius: 14px;
+  padding: 18px 18px 14px;
+  box-shadow: var(--shadow-inset-light);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hero__visual-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--ink-20);
+}
+.hero__visual-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ink-20);
+}
+.hero__visual-label {
+  margin-left: 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__visual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.hero__visual-tile {
+  background: var(--cream);
+  border: 1px solid var(--cream-border);
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color var(--duration) var(--ease);
+}
+.hero__visual-tile:hover { border-color: var(--ink-20); }
+.hero__visual-tile-icon {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: var(--ink-100);
+  color: var(--cream-soft);
+  display: grid; place-items: center;
+}
+.hero__visual-tile-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  color: var(--ink-100);
+}
+.hero__visual-tile-sub {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.hero__visual-foot {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-20);
+}
+
+/* --- Project card decorative visuals --- */
+.project-visual {
+  background: rgba(28,28,28,0.025);
+  border: 1px solid var(--cream-border);
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.project-visual__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.project-visual__chip {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-83);
+  background: var(--cream);
+  border: 1px solid var(--cream-border);
+  border-radius: 999px;
+  padding: 4px 9px;
+}
+.project-visual__chip--ghost {
+  background: transparent;
+  color: var(--muted);
+}
+.project-visual__rows { display: grid; gap: 6px; }
+.project-visual__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ink-82);
+  padding: 8px 10px;
+  background: var(--cream);
+  border: 1px solid var(--cream-border);
+  border-radius: 6px;
+}
+.project-visual__row .ph {
+  display: inline-block;
+  width: 80px; height: 6px;
+  border-radius: 3px;
+  background: var(--ink-20);
+}
+.project-visual__row .ph--md { width: 60px; }
+.project-visual__row .ph--sm { width: 40px; }
+.project-visual__foot {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.project-visual__calendar {
+  display: grid;
+  gap: 4px;
+}
+.project-visual__week {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.project-visual__week-lbl {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.project-visual__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.project-visual__day {
+  height: 14px;
+  border-radius: 3px;
+  background: var(--cream);
+  border: 1px solid var(--cream-border);
+}
+.project-visual__day.is-filled {
+  background: var(--ink-20);
+  border-color: var(--ink-20);
+}
+.project-visual__funnel { display: grid; gap: 6px; }
+.project-visual__funnel-row {
+  background: var(--cream);
+  border: 1px solid var(--cream-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 11.5px;
+  color: var(--ink-82);
+  margin: 0 auto;
+}
+
+/* --- Analytics card glyph head --- */
+.analytics__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.analytics__card-glyph {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(252,251,248,0.06);
+  border: 1px solid var(--cream-08);
+  color: var(--cream-soft);
+  display: grid;
+  place-items: center;
+}
+
+/* --- Contact preview card small thumb --- */
+.contact__preview {
+  position: relative;
+}
+.contact__preview-thumb {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  background: rgba(252,251,248,0.05);
+  border: 1px solid var(--cream-08);
+  color: var(--cream-soft);
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+
+/* --- Mobile-safety: keep visuals from overflowing on small screens --- */
+@media (max-width: 720px) {
+  .hero__visual { max-width: 100%; }
+  .hero__visual-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hero__visual-tile { padding: 12px 12px 10px; }
+  .project-visual { padding: 12px; }
+  .project-visual__row { font-size: 11.5px; padding: 7px 8px; }
 }
