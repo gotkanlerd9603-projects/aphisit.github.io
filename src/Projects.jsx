@@ -1,4 +1,65 @@
 /* global React, Icon */
+
+// Per-project decorative visuals (placeholders only — no real metrics implied).
+const ProjectVisual = ({ kind }) => {
+  if (kind === 'measurement') {
+    return (
+      <div className="project-visual" role="img" aria-label="Measurement framework mockup — neutral placeholder showing query and engagement rows without real performance numbers">
+        <div className="project-visual__head">
+          <span className="project-visual__chip">Measurement Setup</span>
+          <span className="project-visual__chip project-visual__chip--ghost">Preview</span>
+        </div>
+        <div className="project-visual__rows">
+          <div className="project-visual__row"><span>Query</span><span className="ph" /></div>
+          <div className="project-visual__row"><span>Landing Page</span><span className="ph ph--md" /></div>
+          <div className="project-visual__row"><span>Engagement</span><span className="ph ph--sm" /></div>
+        </div>
+        <div className="project-visual__foot">Reporting structure · sample layout</div>
+      </div>
+    );
+  }
+  if (kind === 'content') {
+    return (
+      <div className="project-visual" role="img" aria-label="30-day content calendar mockup — four weekly rows with neutral content blocks">
+        <div className="project-visual__head">
+          <span className="project-visual__chip">Content Calendar</span>
+          <span className="project-visual__chip project-visual__chip--ghost">30 Days</span>
+        </div>
+        <div className="project-visual__calendar" aria-hidden="true">
+          {Array.from({ length: 4 }).map((_, w) => (
+            <div className="project-visual__week" key={w}>
+              <span className="project-visual__week-lbl">W{w + 1}</span>
+              <div className="project-visual__days">
+                {Array.from({ length: 7 }).map((_, d) => (
+                  <span key={d} className={`project-visual__day ${(w + d) % 3 === 0 ? 'is-filled' : ''}`} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="project-visual__foot">Weekly themes · publishing structure</div>
+      </div>
+    );
+  }
+  if (kind === 'campaign') {
+    return (
+      <div className="project-visual" role="img" aria-label="Campaign funnel concept — three stacked stages with audience and creative labels">
+        <div className="project-visual__head">
+          <span className="project-visual__chip">Campaign Concept</span>
+          <span className="project-visual__chip project-visual__chip--ghost">Funnel</span>
+        </div>
+        <div className="project-visual__funnel" aria-hidden="true">
+          <div className="project-visual__funnel-row" style={{ width: '100%' }}><span>Awareness · Audience Targeting</span></div>
+          <div className="project-visual__funnel-row" style={{ width: '78%' }}><span>Consideration · Ad Copy Direction</span></div>
+          <div className="project-visual__funnel-row" style={{ width: '52%' }}><span>Action · CTA Planning</span></div>
+        </div>
+        <div className="project-visual__foot">Meta · Google · TikTok ready</div>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Projects = () => {
   const projects = [
     {
@@ -41,6 +102,7 @@ const Projects = () => {
       ],
       skills: ['Search Console', 'GA4', 'Marketing Reporting', 'Data Interpretation'],
       status: 'Tracking Framework in Progress',
+      visual: 'measurement',
     },
     {
       idx: '03 / 04',
@@ -56,6 +118,7 @@ const Projects = () => {
       ],
       skills: ['Content Strategy', 'Social Media Planning', 'Copywriting', 'Brand Communication'],
       status: 'Portfolio Strategy Project',
+      visual: 'content',
     },
     {
       idx: '04 / 04',
@@ -71,6 +134,7 @@ const Projects = () => {
       ],
       skills: ['Campaign Planning', 'Performance Fundamentals', 'Audience Thinking', 'Ad Copy'],
       status: 'Campaign Concept Project',
+      visual: 'campaign',
     },
   ];
 
@@ -141,6 +205,7 @@ const Projects = () => {
                 </div>
               ) : (
                 <>
+                  {p.visual && <ProjectVisual kind={p.visual} />}
                   <div className="project-card__head">
                     <span className="project-card__index">PROJECT · {p.idx}</span>
                     <span className="project-card__status">{p.status}</span>

@@ -7,7 +7,7 @@ const Hero = () => {
 
         <h1 className="hero__display">
           <span className="hero__display-row">APHISIT HATHAWAY</span>
-          <span className="hero__display-row" style={{ opacity: "1", width: "1048px" }}>DIGITAL MARKETER</span>
+          <span className="hero__display-row">DIGITAL MARKETER</span>
         </h1>
 
         <div className="hero__bottom">
@@ -24,20 +24,46 @@ const Hero = () => {
             </a>
           </div>
 
-          <div className="hero__portrait" role="img" aria-label="Portrait placeholder">
-            <div className="hero__portrait-inner">
-              <div className="hero__portrait-tag">Portrait</div>
-              <div className="hero__portrait-name">Aphisit Hathaway</div>
-              <div className="hero__portrait-sub">Digital Marketing · 2026</div>
-              <div className="hero__portrait-hint">Drop a photo into this slot</div>
+          {/* Visual placeholder: marketing toolkit dashboard mockup.
+              When the user provides a real photo, swap this block for an <img>. */}
+          <div className="hero__visual" role="img" aria-label="Marketing toolkit overview placeholder — neutral dashboard mockup illustrating SEO, GA4, Search Console, and Content Plan modules">
+            <div className="hero__visual-head">
+              <span className="hero__visual-dot" /><span className="hero__visual-dot" /><span className="hero__visual-dot" />
+              <span className="hero__visual-label">Marketing Toolkit · Preview</span>
             </div>
-            <svg className="hero__portrait-doodle" viewBox="0 0 200 200" aria-hidden="true">
-              <circle cx="40" cy="50" r="3" />
-              <circle cx="60" cy="35" r="2" />
-              <circle cx="160" cy="60" r="3" />
-              <path d="M30 90 Q50 70 80 85" stroke="currentColor" strokeWidth="1" fill="none" />
-              <path d="M150 120 Q170 100 180 130" stroke="currentColor" strokeWidth="1" fill="none" />
-            </svg>
+            <div className="hero__visual-grid">
+              <div className="hero__visual-tile">
+                <div className="hero__visual-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.5-3.5"/></svg>
+                </div>
+                <div className="hero__visual-tile-name">SEO</div>
+                <div className="hero__visual-tile-sub">Keywords · Queries</div>
+              </div>
+              <div className="hero__visual-tile">
+                <div className="hero__visual-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-8"/><path d="M22 20H2"/></svg>
+                </div>
+                <div className="hero__visual-tile-name">GA4</div>
+                <div className="hero__visual-tile-sub">Engagement</div>
+              </div>
+              <div className="hero__visual-tile">
+                <div className="hero__visual-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                </div>
+                <div className="hero__visual-tile-name">Search Console</div>
+                <div className="hero__visual-tile-sub">Visibility</div>
+              </div>
+              <div className="hero__visual-tile">
+                <div className="hero__visual-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+                </div>
+                <div className="hero__visual-tile-name">Content Plan</div>
+                <div className="hero__visual-tile-sub">Calendar</div>
+              </div>
+            </div>
+            <div className="hero__visual-foot">
+              <span>Conceptual preview · Placeholder until real assets are added</span>
+            </div>
           </div>
 
           <aside className="hero__quote">

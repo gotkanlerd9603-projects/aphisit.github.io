@@ -2,10 +2,24 @@
 const Contact = () => {
   const navLinks = ['About', 'Skills', 'Projects', 'Analytics', 'Experience', 'Contact'];
   const previews = [
-  { idx: '01', ttl: 'SEO Portfolio Website', tag: 'Active' },
-  { idx: '02', ttl: 'GSC + GA4 Measurement Setup', tag: 'In Progress' },
-  { idx: '03', ttl: '30-Day Content Strategy', tag: 'Strategy' },
-  { idx: '04', ttl: 'Digital Ads Campaign Concept', tag: 'Concept' }];
+  { idx: '01', ttl: 'SEO Portfolio Website', tag: 'Active', thumb: 'seo' },
+  { idx: '02', ttl: 'GSC + GA4 Measurement Setup', tag: 'In Progress', thumb: 'measurement' },
+  { idx: '03', ttl: '30-Day Content Strategy', tag: 'Strategy', thumb: 'content' },
+  { idx: '04', ttl: 'Digital Ads Campaign Concept', tag: 'Concept', thumb: 'campaign' }];
+
+  // Small thumbnails for footer preview cards (decorative — aria-hidden).
+  const PreviewThumb = ({ kind }) => {
+    const svg = {
+      width: 26, height: 26, viewBox: '0 0 24 24', fill: 'none',
+      stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round',
+      'aria-hidden': true,
+    };
+    if (kind === 'seo')         return <svg {...svg}><circle cx="11" cy="11" r="6"/><path d="m20 20-3.5-3.5"/></svg>;
+    if (kind === 'measurement') return <svg {...svg}><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-8"/><path d="M22 20H2"/></svg>;
+    if (kind === 'content')     return <svg {...svg}><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>;
+    if (kind === 'campaign')    return <svg {...svg}><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg>;
+    return null;
+  };
 
 
   return (
@@ -101,6 +115,7 @@ const Contact = () => {
         <div className="contact__previews">
           {previews.map((p) =>
           <a className="contact__preview" key={p.idx} href="#projects">
+              <span className="contact__preview-thumb" aria-hidden="true"><PreviewThumb kind={p.thumb} /></span>
               <span className="idx">PROJECT · {p.idx}</span>
               <span className="ttl">{p.ttl}</span>
               <span className="tag">{p.tag}</span>
