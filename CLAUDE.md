@@ -1,248 +1,271 @@
+[CLAUDE.md](https://github.com/user-attachments/files/28417836/CLAUDE.md)
 # CLAUDE.md
 
-## Project Overview
+Guidance for Claude (and Claude Code) when working in this repository.
 
-This repository is Aphisit Hathaway's personal digital marketing portfolio, hosted on GitHub Pages.
+---
 
-The website is intentionally simple, minimal, and self-contained. It currently uses a single `index.html` file with HTML, CSS, and JavaScript in one file.
+## 1. Project Overview
 
-The goal of this portfolio is to present Aphisit as a digital marketing candidate with strengths in:
-- Digital marketing
-- SEO
-- Content strategy
-- Performance marketing
-- Marketing analytics
+This repository is **Aphisit Hathaway's personal digital marketing portfolio**, hosted on GitHub Pages.
+
+The site is intentionally simple, minimal, and self-contained — a single `index.html` file with HTML, CSS, and JavaScript co-located.
+
+The portfolio positions Aphisit as a digital marketing candidate with strengths in:
+
+- Digital marketing & performance marketing
+- SEO and content strategy
+- Marketing analytics (GA4, Search Console)
 - AI-assisted workflow
 - Portfolio-first career development
 
-## Working Rules for Claude
+**Primary goal of the site:** help a recruiter, in under 30 seconds, understand who Aphisit is, what he can do, see proof, and contact him.
 
-When working on this repository:
+---
 
-1. Do not push directly to `main`.
-2. Always create a new branch and open a Pull Request when making code changes.
-3. Keep the design minimal, clean, professional, and portfolio-focused.
-4. Preserve the current single-page structure unless specifically asked to refactor.
-5. Do not add heavy frameworks such as React, Next.js, Vue, or Tailwind unless explicitly requested.
-6. Do not add unnecessary dependencies or build tools.
-7. Keep the site compatible with GitHub Pages.
-8. Do not edit secrets, tokens, GitHub Actions secrets, or sensitive configuration.
-9. Do not remove existing content unless explicitly asked.
-10. Explain important changes clearly in the Pull Request description.
+## 2. Tech Stack & Constraints
 
-## Design Direction
+**Stack**
 
-The website should feel like a polished, modern digital marketing portfolio — minimal, professional, strategic, and recruiter-friendly.
+- Plain HTML, CSS, JavaScript (no framework)
+- Single-file architecture: `index.html` contains everything
+- Hosted on GitHub Pages (static only — no backend, no server-side rendering)
+- `.nojekyll` enabled
 
-The visual direction should communicate:
-- Digital marketing capability
-- SEO and content strategy experience
-- Data-driven thinking
-- Marketing analytics familiarity
-- AI-assisted workflow awareness
-- Practical project and portfolio credibility
+**Hard constraints — do not introduce:**
 
-### Overall Visual Style
+- React, Next.js, Vue, Svelte, or any SPA framework
+- Tailwind, Bootstrap, or any CSS framework
+- Build tools: Webpack, Vite, Parcel, npm scripts
+- Package managers / `node_modules`
+- Backend code, databases, or serverless functions
 
-The visual style should be:
-- Minimal but not empty
-- Clean and structured
-- Modern and editorial
-- Professional but still personal
-- Easy to scan quickly
-- Suitable for a digital marketing portfolio, case studies, SEO work, GA4/Search Console results, and campaign showcases
+**Allowed additions (with care):**
 
-The website should not feel like a generic template or a colorful student project. It should feel more like a clean personal brand website for a junior-to-mid level digital marketer.
+- Google Analytics 4 (GA4) tracking snippet
+- Google Tag Manager
+- Google Search Console verification meta tag
+- Static form services via attribute only (Formspree action URL, `mailto:`, Netlify Forms)
+- Google Fonts (one or two families maximum)
+- Inline SVG icons
 
-### Layout Direction
+**Browser support:** Latest two versions of Chrome, Safari, Firefox, Edge. Mobile Safari and Chrome Android are priority.
 
-Use a single-page scrolling layout with clear visual hierarchy.
+---
 
-Prioritize:
-- Strong hero headline
-- Short and clear supporting text
-- Clear call-to-action buttons
-- Well-spaced sections
-- Portfolio/project cards
-- Simple proof sections for tools, analytics, SEO, and campaign work
-- Clear contact section
+## 3. Working Rules for Claude
 
-Each section should help a recruiter quickly understand:
-- Who Aphisit is
-- What marketing skills he has
-- What tools he can use
-- What type of work he can show
-- Why he is credible
-- How to contact him
+1. **Never push directly to `main`.** Always create a new branch and open a Pull Request.
+2. **Branch naming:** `feat/...`, `fix/...`, `content/...`, `seo/...`, `perf/...`, `a11y/...`, `docs/...`
+3. **Commit messages:** Use Conventional Commits — `feat: add case study section`, `fix: mobile hero overflow`, `seo: add Person schema`.
+4. **PR description** must explain: what changed, why, and any visual or SEO impact.
+5. **Keep the single-page structure** unless explicitly asked to refactor.
+6. **Do not remove existing content** unless explicitly asked.
+7. **Do not touch secrets**, GitHub Actions tokens, or `.github/workflows/*.yml` unless requested.
+8. **Preserve the working GitHub Pages deployment** — every change must keep the site live.
+9. **For small requests:** make focused changes only — do not rewrite the whole site.
+10. **For larger requests:** propose the plan first, then implement on a new branch.
 
-### Color Direction
+---
 
-Use a restrained and professional color palette.
+## 4. SEO Requirements
 
-Preferred direction:
-- Soft neutral or warm off-white background
-- Charcoal or near-black text
-- Muted accent color for buttons, links, highlights, and active states
-- Light neutral card backgrounds
-- Subtle borders instead of heavy shadows
+SEO is part of the portfolio's value proposition. Every change must preserve or improve these:
 
-Avoid:
-- Bright random colors
-- Too many accent colors
-- Strong gradients
-- Neon effects
-- Overly playful color combinations
+**Meta tags (must exist in `<head>`):**
 
-### Typography Direction
+- `<title>` — under 60 characters, includes name + role
+- `<meta name="description">` — 140–160 characters, includes target keywords
+- `<meta name="viewport" content="width=device-width, initial-scale=1">`
+- `<link rel="canonical">` pointing to the live GitHub Pages URL
+- `<html lang="en">` (or `lang="th"` if Thai is the primary language)
 
-Typography should feel modern, readable, and slightly editorial.
+**Social sharing:**
 
-Prioritize:
-- Large but balanced hero headline
-- Clear section headings
-- Comfortable body text size
-- Good line height
-- Strong but controlled font-weight contrast
-- Consistent spacing between headings and body text
+- Open Graph: `og:title`, `og:description`, `og:type`, `og:url`, `og:image` (1200×630)
+- Twitter Card: `twitter:card` set to `summary_large_image`
 
-Avoid:
-- Decorative fonts
-- Too many font sizes
-- Tiny body text
-- Overuse of bold text
-- Oversized mobile headlines
+**Structured data (JSON-LD in `<head>`):**
 
-### UI & Component Direction
+- `Person` schema with name, jobTitle, url, sameAs (LinkedIn, GitHub), knowsAbout
+- `WebSite` schema
 
-Use simple, polished UI components such as:
-- Clean cards
-- Rounded corners
-- Subtle borders
-- Soft shadows only when useful
-- Simple buttons
-- Light hover states
-- Clear navigation links
-- Dashboard-style blocks for analytics or proof sections
+**Heading hierarchy:**
 
-The design should feel handcrafted and intentional, not like a default template.
+- Exactly one `<h1>` per page (the hero headline)
+- Proper sequential nesting (`h1` → `h2` → `h3`) — never skip levels
 
-### Mobile Direction
+**HTML quality:**
 
-Mobile design is a priority.
+- Use semantic elements: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
+- Descriptive `alt` text on every image (empty `alt=""` only for purely decorative images)
+- Descriptive link text — never "click here" or "read more" alone
 
-On mobile:
-- Text must be balanced with the screen width
-- Hero headline should not feel oversized
-- Sections should have enough breathing room
-- Cards should stack cleanly
-- Buttons should be easy to tap
-- Navigation should remain simple
-- No horizontal scrolling
-- No cramped layouts
+**Target Lighthouse SEO score: 100.**
 
-### Image Direction
+---
 
-If images are used, they should support the portfolio purpose.
+## 5. Performance Budget
 
-Use images or placeholders related to:
-- Marketing projects
-- SEO
-- Content planning
-- Analytics dashboards
-- Campaign reporting
-- Website improvement
-- AI-assisted workflow
+Marketing portfolios are judged on speed. Maintain these targets:
 
-Images should feel:
-- Professional
-- Relevant
-- Clean
-- Editorial
-- Not overly stock-photo-like
+| Metric | Target |
+|---|---|
+| Lighthouse Performance (mobile) | ≥ 90 |
+| Lighthouse SEO | 100 |
+| Lighthouse Accessibility | ≥ 90 |
+| Lighthouse Best Practices | ≥ 90 |
+| Largest Contentful Paint (LCP) | < 2.5s |
+| Cumulative Layout Shift (CLS) | < 0.1 |
+| Total page weight (compressed) | < 500 KB |
 
-Do not use random decorative images just to fill space.
+**Image rules:**
 
-### Animation Direction
+- Compress before committing (use TinyPNG, Squoosh, or equivalent)
+- Prefer WebP or AVIF; provide fallback when needed
+- Always include `width` and `height` attributes to prevent layout shift
+- Use `loading="lazy"` for below-the-fold images
+- Provide responsive images with `srcset` for hero/large images
 
-Use minimal animation only.
+**CSS/JS:**
 
-Allowed:
-- Subtle fade-in
-- Smooth scrolling
-- Light hover effects
-- Small card elevation on hover
+- Inline CSS in `<style>` is fine for this single-page site, but keep it under ~30 KB
+- Inline JS should be under ~15 KB
+- No render-blocking external scripts in `<head>` — defer or async
+- Preload critical fonts; subset Google Fonts to needed weights only
 
-Avoid:
-- Heavy animations
-- Bouncing effects
-- Complex transitions
-- Slow-loading motion effects
-- Anything that distracts from the portfolio content
+---
+
+## 6. Accessibility (a11y)
+
+- Color contrast ratio: minimum **4.5:1** for body text, **3:1** for large text
+- Visible focus states on all interactive elements (never `outline: none` without replacement)
+- Full keyboard navigation — every link, button, and form field reachable via Tab
+- `aria-label` on icon-only buttons and ambiguous links
+- Form inputs paired with `<label>` elements
+- Respect `prefers-reduced-motion` for animations
+- Skip-to-content link for keyboard users
+
+---
+
+## 7. Design System
+
+### Visual style
+
+Minimal, editorial, modern, professional — like a personal brand site for a junior-to-mid digital marketer, not a generic template or student project.
+
+### Layout
+
+Single-page scrolling layout with clear visual hierarchy. Sections in order:
+
+1. **Hero** — name, headline, supporting text, primary CTA
+2. **About** — short positioning paragraph
+3. **Skills & tools** — SEO, analytics, content, AI workflow
+4. **Projects / case studies** — cards with results and links
+5. **Proof** — analytics screenshots, certifications, dashboards
+6. **Contact** — clear CTA, email, LinkedIn, GitHub
+
+### Color palette
+
+- Background: soft neutral or warm off-white
+- Text: charcoal or near-black
+- Accent: one muted color for buttons, links, highlights
+- Cards: light neutral backgrounds with subtle borders
+
+**Avoid:** bright random colors, multiple accents, strong gradients, neon, playful combinations.
+
+### Typography
+
+- Modern, readable, slightly editorial
+- Balanced hero headline (not oversized on mobile)
+- Clear heading scale with consistent spacing
+- Comfortable body size (16–18px) with generous line-height (1.5–1.7)
+- Controlled font-weight contrast — avoid overusing bold
+
+### Components
+
+Clean cards, rounded corners, subtle borders, light hover states, simple buttons, dashboard-style blocks for analytics proof. Handcrafted feel, not template-default.
+
+### Animation
+
+Subtle only: fade-in on scroll, smooth scrolling, light hover states. Respect `prefers-reduced-motion`. No bouncing, no slow transitions, no distracting motion.
+
+### Mobile priority
+
+- No horizontal scroll, ever
+- Tap targets ≥ 44×44 px
+- Hero text balanced to screen width
+- Cards stack cleanly with breathing room
+- Sticky/simple navigation
 
 ### Avoid
 
-Do not use:
-- Overly colorful design
-- Heavy animations
-- Complex layouts
-- Generic template-like sections
-- Unnecessary visual clutter
-- Random icons
-- Excessive gradients
-- Too many card styles
-- Large empty spaces without purpose
-- Corporate SaaS landing page style
-- Designs that look too playful, childish, or unfinished
+Overly colorful design, heavy animations, complex layouts, generic SaaS landing-page sections, random decorative icons, excessive gradients, empty-feeling whitespace, childish or unfinished aesthetics.
 
-### Final Design Goal
+---
 
-The final website should look like a polished personal marketing portfolio that supports job applications for digital marketing, content marketing, SEO, marketing analytics, performance marketing, and remote/WFH roles.
+## 8. Content & Voice
 
-The design should make Aphisit look:
-- Professional
-- Strategic
-- Practical
-- Data-aware
-- Recruiter-ready
-- Capable of presenting real marketing work clearly
+**Positioning:** A digital marketing graduate with hands-on entrepreneurial and project experience — focused on data-driven campaigns, SEO, content strategy, marketing analytics, and practical AI-assisted workflows.
 
-## Content Direction
+**Tone:**
 
-When improving content, position Aphisit as:
+- Professional, direct, confident
+- Recruiter-friendly — easy to scan, easy to verify
+- Not exaggerated, not buzzword-heavy
+- Specific over vague (e.g. "grew organic traffic 38%" beats "improved SEO")
 
-A digital marketing graduate with hands-on entrepreneurial and project experience, focused on data-driven campaigns, SEO, content strategy, marketing analytics, and practical AI-assisted workflows.
+**Default language:** English. If Thai content is added, set `lang` attribute appropriately and consider `hreflang`.
 
-Tone of content:
-- Professional
-- Direct
-- Confident
-- Recruiter-friendly
-- Not exaggerated
+---
 
-## Technical Rules
+## 9. File Structure
 
-Current structure:
+```
+/
+├── index.html              # full website
+├── README.md               # repo overview
+├── CLAUDE.md               # this file
+├── .nojekyll               # disables Jekyll on GitHub Pages
+├── assets/                 # images, favicons, og-image (if added)
+└── .github/
+    └── workflows/
+        └── claude.yml      # Claude Code GitHub Actions — do not edit
+```
 
-- `index.html` contains the full website.
-- `README.md` explains the repository.
-- `.nojekyll` is used for GitHub Pages.
-- `.github/workflows/claude.yml` is used for Claude Code GitHub Actions.
+Before proposing changes, read `index.html` to understand the current layout and copy.
 
-Before proposing changes:
-- Read `index.html`.
-- Understand the current layout and copywriting.
-- Keep the website working as a static GitHub Pages site.
+---
 
-## Preferred Claude Behavior
+## 10. Local Development
 
-For small requests:
-- Make focused changes only.
-- Do not rewrite the whole website unless asked.
+No build step required. Preview locally with any static server:
 
-For larger requests:
-- Explain the plan first.
-- Then make changes in a new branch.
-- Open a Pull Request for review.
+```bash
+# Python (built-in)
+python3 -m http.server 8000
 
-For portfolio improvements:
-- Prioritize clarity, recruiter readability, SEO basics, mobile responsiveness, and conversion toward contacting Aphisit.
+# Node (if available)
+npx serve .
+```
+
+Then open `http://localhost:8000`.
+
+For Lighthouse audits, use Chrome DevTools → Lighthouse tab, mobile preset.
+
+---
+
+## 11. Pull Request Checklist
+
+Before opening a PR, confirm:
+
+- [ ] Branch follows naming convention
+- [ ] Commit messages follow Conventional Commits
+- [ ] Site still renders correctly on mobile and desktop
+- [ ] No horizontal scroll on mobile
+- [ ] `<h1>` count is exactly 1
+- [ ] All images have `alt` attributes and `width`/`height`
+- [ ] Meta description and canonical are intact
+- [ ] No broken internal links
+- [ ] No new heavy dependencies introduced
+- [ ] PR description explains the why, not just the what
